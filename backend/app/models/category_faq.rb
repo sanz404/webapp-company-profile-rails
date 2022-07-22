@@ -1,0 +1,2 @@
+class CategoryFaq < ApplicationRecord
+end
