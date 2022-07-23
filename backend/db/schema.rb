@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(version: 2022_07_22_155429) do
     t.index ["title"], name: "index_abouts_on_title"
   end
 
+  create_table "article_categories", charset: "latin1", options: "ENGINE=MyISAM", force: :cascade do |t|
+    t.bigint "category_article_id", null: false
+    t.bigint "article_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_article_categories_on_article_id"
+    t.index ["category_article_id"], name: "index_article_categories_on_category_article_id"
+  end
+
   create_table "article_comments", charset: "latin1", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.bigint "article_id", null: false
     t.bigint "user_id", null: false
@@ -48,15 +57,6 @@ ActiveRecord::Schema.define(version: 2022_07_22_155429) do
     t.index ["slug"], name: "index_articles_on_slug"
     t.index ["title"], name: "index_articles_on_title"
     t.index ["user_id"], name: "index_articles_on_user_id"
-  end
-
-  create_table "artilce_categories", charset: "latin1", options: "ENGINE=MyISAM", force: :cascade do |t|
-    t.bigint "category_articles_id", null: false
-    t.bigint "articles_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["articles_id"], name: "index_artilce_categories_on_articles_id"
-    t.index ["category_articles_id"], name: "index_artilce_categories_on_category_articles_id"
   end
 
   create_table "category_articles", charset: "latin1", options: "ENGINE=MyISAM", force: :cascade do |t|
